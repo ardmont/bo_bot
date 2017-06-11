@@ -242,14 +242,12 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
 .controller('listOcorrencias', ['$scope', 'GoogleMaps', '$http', function($scope, GoogleMaps, $http){
     $scope.tiposOcorrencias = [{tipo:"Assalto", value:false}, {tipo:"Roubo", value:false}, {tipo:"Furto", value:false}, {tipo:"Estupro", value:false}
     , {tipo:"Vandalismo", value:false}, {tipo:"Assassinato", value:false}];
-    $scope.ocorrencias = [
-        {tipoOcorrencia:"Roubo",local:"Rua Do beco, 1231", horario:"12:30"},
-        {tipoOcorrencia:"Assalto",local:"Rua Do beco, 1231", horario:"12:30"},
-        {tipoOcorrencia:"Furto",local:"Rua Do beco, 1231", horario:"12:30"},
-        {tipoOcorrencia:"Homicídio",local:"Rua Do beco, 1231", horario:"12:30"},
-        {tipoOcorrencia:"Vandalismo",local:"Rua Do beco, 1231", horario:"12:30"}
-        
-    ];
+    $scope.selectedTipo;
+    $scope.filtrarPorTipo = filtrarPorTipo;
+
+    function filtrarPorTipo(){
+      GoogleMaps.filtrar($scope.selectedTipo);
+    }
     GoogleMaps.init();
     
     
