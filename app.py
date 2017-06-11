@@ -12,6 +12,7 @@ from flask import jsonify
 from datetime import date, datetime
 from decimal import Decimal
 from flask_cors import CORS, cross_origin
+from flask import render_template
 import requests
 
 
@@ -19,7 +20,7 @@ import requests
 app = Flask(__name__)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@192.168.191.104/bobot'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@192.168.43.214/bobot'
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -29,6 +30,11 @@ def create_app():
     app = Flask(__name__)
     db.init_app(app)
     return app
+
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/getOcorrencias', methods=['GET'])
 @cross_origin()
@@ -97,7 +103,7 @@ def setOcorrencia():
         db.session.add(ocorrencia)
         db.session.commit()    
 
-        resposta = "Seus dados foram salvos com sucesso, obrigado pela contribuição e sentimos muito pelo infortúnio"
+        resposta = "Seus dados foram salvos com sucesso, obrigado pela contribuição e sentimos muito pelo infortúnio. Lembramos que é muito importante registrar o boletin de ocorrência, você pode fazer isso online, acessando esse link: http://www.delegaciaonline.pb.gov.br/delegacia-web/pages/index.xhtml"
         res = json.dumps({
             "speech": resposta,
             "displayText" : resposta,

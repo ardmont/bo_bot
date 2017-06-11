@@ -21,12 +21,12 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
         zoom: zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
+
 				
 				if(map === null){
 					map = new google.maps.Map(document.getElementById("mapViewDiv"), mapOptions);
 					 var imagem = 'img/alerta.png';
 
-			
        // Create the search box and link it to the UI element.
 				  var input = document.getElementById('localConsultado');
 				  var searchBox = new google.maps.places.SearchBox(input);
@@ -136,7 +136,7 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
               map: map,
               animation: google.maps.Animation.DROP,
               position: markerPos,
-              icon:"./Img/"+record.tipo+".png"
+              icon:"../Img/"+record.tipo+".png"
           });
           markersmap.push(marker);
           
@@ -267,7 +267,7 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
               map: map,
               animation: google.maps.Animation.DROP,
               position: markerPos,
-              icon:"./Img/"+record.tipo+".png"
+              icon:"../Img/"+record.tipo+".png"
           });
           markersmap.push(marker);
 				  
