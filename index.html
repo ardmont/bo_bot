@@ -92,7 +92,7 @@
         <div class="panel-body">
           <select id="" class="form-control" ng-model="selectedTipo" ng-change="filtrarPorTipo()">
 
-            <option ng-repeat="tp in tiposOcorrencias"  >{{tp.tipo}}</option>
+            <option ng-repeat="tp in tiposOcorrencias" ng-value="tp.value" >{{tp.tipo}}</option>
 
             
           </select>
