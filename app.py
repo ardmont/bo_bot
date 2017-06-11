@@ -20,7 +20,7 @@ import requests
 app = Flask(__name__)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@192.168.43.214/bobot'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/bobot'
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

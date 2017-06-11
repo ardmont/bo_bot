@@ -25,9 +25,9 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
 				
 				if(map === null){
 					map = new google.maps.Map(document.getElementById("mapViewDiv"), mapOptions);
-					 var imagem = 'img/alerta.png';
+					 var imagem = '../img/alerta.png';
 
-       // Create the search box and link it to the UI element.
+       				// Create the search box and link it to the UI element.
 				  var input = document.getElementById('localConsultado');
 				  var searchBox = new google.maps.places.SearchBox(input);
 				  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -118,10 +118,10 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
  
   function loadMarkers(){
       //Get all of the markers from our Markers factory
-      $http.get('http://196904bf.ngrok.io/getOcorrencias').then(function(markers){
+      $http.get('http://32205231.ngrok.io/getOcorrencias').then(function(markers){
  
         console.log("Markers: ", markers);
- 
+ 	
         var records = markers.data;
       
         
