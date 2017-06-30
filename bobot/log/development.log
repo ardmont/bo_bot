@@ -19576,3 +19576,16 @@ No serializer found for resource: #<Session id: 1, facebook_id: "131170030221538
 Completed 200 OK in 14ms (Views: 13.1ms | ActiveRecord: 0.9ms)
 
 
+Started GET "/messenger/webhook?hub.mode=subscribe&hub.challenge=1256157966&hub.verify_token=bobot" for 2a03:2880:1110:8fdb:face:b00c:0:8000 at 2017-06-24 19:29:47 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Messenger::MessengerController#validate as */*
+  Parameters: {"hub.mode"=>"subscribe", "hub.challenge"=>"1256157966", "hub.verify_token"=>"bobot"}
+Completed 200 OK in 474ms (Views: 4.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/messenger/webhook?hub.mode=subscribe&hub.challenge=1368477119&hub.verify_token=bobot" for 2a03:2880:1110:8fd1:face:b00c:0:8000 at 2017-06-24 19:30:11 -0300
+Processing by Messenger::MessengerController#validate as */*
+  Parameters: {"hub.mode"=>"subscribe", "hub.challenge"=>"1368477119", "hub.verify_token"=>"bobot"}
+Completed 200 OK in 465ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
