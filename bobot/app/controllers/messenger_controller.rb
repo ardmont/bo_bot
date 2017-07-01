@@ -8,7 +8,7 @@ class MessengerController < Messenger::MessengerController
 			      recipient_id = messaging_event['recipient']['id']
             unless messaging_event['message']&.has_key?('is_echo') || !messaging_event['message']&.has_key?('text')
               sender_id = messaging_event['sender']['id']
-              recipient_id = messaging_event['recipient']['id']
+              recipient_id = messaging_event['recipient']['id']            
               message(messaging_event,sender_id)
             end
         end
@@ -39,5 +39,5 @@ class MessengerController < Messenger::MessengerController
     session
   end
 
-  
+ 
 end
