@@ -45,8 +45,7 @@ html,body{
 #containerMapa{
   height: 100%;
   width: 100%;
-  margin-top: -50px;
-  padding: 50px 15px 0px 12px; /*set left/right padding according to needs*/
+  margin-top: 50px;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }

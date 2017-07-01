@@ -28,7 +28,7 @@
 </head>
 
 
-<body ng-app="bobotApp" ng-controller="listOcorrencias">
+<body ng-app="bobotApp" ng-controller="MapController as vm">
   <header>
        <nav class="navbar navbar-inverse navbar-fixed-top">
              <div class="container-fluid">
@@ -47,7 +47,7 @@
                  </form>
                  <ul class="nav navbar-nav navbar-right">
                    <li>
-                     <a data-toggle="modal" data-target="#modalFiltros">
+                     <a data-toggle="modal" ng-click="vm.openModalFiltros()">
                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
                        Filtros
                      </a>
@@ -85,6 +85,10 @@
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="../static/scripts/app.js"></script>
 <script src="../static/scripts/filtrosController.js"></script>
+<script src="../static/scripts/MapController.js"></script>
+<script src="../static/scripts/google-maps.service.js"></script>
+
+
 </body>
 </html>
 
