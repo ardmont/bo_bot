@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -28,51 +27,13 @@
 </head>
 
 
-<body ng-app="bobotApp" ng-controller="MapController as vm">
-  <header>
-       <nav class="navbar navbar-inverse navbar-fixed-top">
-             <div class="container-fluid">
-               <div class="navbar-header">
-                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
-                   <span class="sr-only">Toggle navigation</span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-                 </button>
-                 <a class="navbar-brand" href="#">B.O BOT</a>
-               </div>
-               <div id="navbar" class="navbar-collapse collapse" aria-expanded="true">
-                 <form class="navbar-form navbar-right">
-                   <input type="text" id="localConsultado" class="form-control" placeholder="Pesquisar local...">
-                 </form>
-                 <ul class="nav navbar-nav navbar-right">
-                   <li>
-                     <a data-toggle="modal" ng-click="vm.openModalFiltros()">
-                       <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-                       Filtros
-                     </a>
-                   </li>
-                   <li>
-                     <a data-toggle="modal" data-target="#modalEstatisticas">
-                       <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-                       Estatísticas
-                     </a>
-                   </li>
-                   <li><a href="https://www.facebook.com/hackfestbobot/" target="_blank">Sobre o projeto</a></li>
-                 </ul>
-               </div>
-             </div>
-           </nav>
-     </header>
-
- 
-
+<body ng-app="bobotApp" >
+  <!-- NavBar -->
+  <div ui-view="navbar" ng-cloak></div>
+  
   <!-- Map  -->
 <div class="container" id="containerMapa">
-   <div class="row" id="rowMapa">
-      <div class="col-md-12" id="mapViewDiv">
-    </div>
-</div>
+    <div ui-view="content" ng-cloak></div>
 </div>
 
 <script src="../static/scripts/bower_components/jquery/dist/jquery.js"></script>
@@ -81,12 +42,18 @@
 <script src="../static/scripts/bower_components/angular/angular.js"></script>
 <script src="../static/scripts/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="../static/scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places,visualization,geometry"></script>
+<script src="../static/scripts/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../static/scripts/bower_components/angular-resource/angular-resource.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaqrXmdzYSRboSejJQ0Id4Mz9JJbrOp44&libraries=places,visualization,geometry"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script src="../static/scripts/app.js"></script>
 <script src="../static/scripts/filtrosController.js"></script>
 <script src="../static/scripts/MapController.js"></script>
+<script src="../static/scripts/navbar.controller.js"></script>
 <script src="../static/scripts/google-maps.service.js"></script>
+<script src="../static/scripts/violence.service.js"></script>
+
+<script src="../static/scripts/app.state.js"></script>
 
 
 </body>
