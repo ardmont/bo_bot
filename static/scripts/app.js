@@ -3,7 +3,7 @@ var markersmap = [];
 var heatmapData2 = [];
 var heatmap;
 var markerCluster;
-angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
+angular.module("bobotApp",['ui.bootstrap']).factory('GoogleMaps', function($http){
  
   var apiKey = false;
   
@@ -107,18 +107,20 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
 	 function DeleteMarkers() {
         //Loop through all the markers and remove
 				heatmap.setMap(null);
-				markerCluster = null;
+				
         for (var i = 0; i < markersmap.length; i++) {
             markersmap[i].setMap(null);
         }
 				 
         markersmap = [];
 				heatmapData2 = [];
+				markerCluster = new MarkerClusterer(map, markersmap,
+      		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
     };
  
   function loadMarkers(){
       //Get all of the markers from our Markers factory
-      $http.get('http://196904bf.ngrok.io/getOcorrencias').then(function(markers){
+      $http.get('https://hackfestbobot.herokuapp.com/messenger/get_violence').then(function(markers){
  
         console.log("Markers: ", markers);
  
@@ -261,7 +263,8 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
           var record = records[i];   
           var markerPos = new google.maps.LatLng(record.latitude, record.longitude);
              heatmapData2.push(markerPos);
-
+					markerCluster = new MarkerClusterer(map, markersmap,
+      		{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
           // Add the markerto the map
           var marker = new google.maps.Marker({
               map: map,
@@ -370,9 +373,7 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
   }
  
 })
-.controller('listOcorrencias', ['$scope', 'GoogleMaps', '$http', function($scope, GoogleMaps, $http){
-	$scope.tiposOcorrencias = [{tipo:"Assalto", value:"assalto"}, {tipo:"Roubo", value:"roubo"}, {tipo:"Violência Sexual", value:"vio_sexual"}
-    , {tipo:"Vandalismo", value:"vandalismo"}, {tipo:"Homicídio", value:"homicidio"}];
+.controller('listOcorrencias', ['$scope', 'GoogleMaps', '$http', '$uibModal', function($scope, GoogleMaps, $http, $uibModal){
 
     $scope.selectedTipo;
     $scope.filtrarPorTipo = filtrarPorTipo;
@@ -392,5 +393,18 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
  
         GoogleMaps.init();
     });
+
+		 $uibModal.open({
+                    templateUrl: 'filtros.html',
+                    controller: 'FiltrosController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg'
+                    
+                }).result.then(function(result) {
+                   $scope.selectedTipo = result;
+                }, function() {
+                    
+                });
    
 }]); 
