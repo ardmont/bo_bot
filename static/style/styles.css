@@ -42,6 +42,21 @@ html,body{
 	padding: 0px;
 	height: 700px;
 }
+#containerMapa{
+  height: 100%;
+  width: 100%;
+  margin-top: 50px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#rowMapa{
+  height: 100%;
+}
+
+#mapViewDiv{
+  height: 100%;
+}
 
 #divFeed{
 	background-color: #e7e7e7;
