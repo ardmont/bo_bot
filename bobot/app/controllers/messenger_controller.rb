@@ -39,5 +39,4 @@ class MessengerController < Messenger::MessengerController
     session
   end
 
- 
 end

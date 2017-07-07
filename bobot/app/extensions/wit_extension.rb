@@ -2,11 +2,9 @@ require 'wit'
 
 class WitExtension
 
-
   def initialize(sender_id, session_id)
     actions = {
-      send: -> (request, response) {
-
+      send: -> (request, response) {        
         if response['quickreplies']
           if response['quickreplies'][0] == 'get_location'
             Messenger::Client.send(
@@ -23,41 +21,58 @@ class WitExtension
         end
 
       },
-      setViolencia: -> (request) {
+      setViolence: -> (request) {
         context = request["context"]
         entities = request["entities"]
+        session = Session.find(session_id)
 
-        session = Session.find(session_id)
-        violencia = first_entity_value(entities, "violencia") || context["violencia"]
-        session.update(context: {violencia: violencia}, violence_type: violencia)
-        return context
-      },
-      setOnde: -> (request){
-        context = request["context"]
-        entities = request["entities"]
-        session = Session.find(session_id)
-        onde = first_entity_value(entities, "location") || context["onde"]
-        session.update(context: {onde: onde}, latitude: '-7.1668063', longitude: '-34.8348208')
-        return context
-      },
-      setQuando: -> (request){
-        context = request["context"]
-        entities = request["entities"]
+        violence = first_entity_value(entities, "violence") || context["violence"]
         
-        session = Session.find(session_id)
-        quando = first_entity_value(entities, "datetime") || context["quando"]
-        session.update(context: {quando: quando}, violence_date: quando)
+        if violence
+          context['violence'] = violence
+          session.update(context: {violence: violence}, violence_type: violence)
+        else
+          context['missingViolence'] = true
+        end
+
         return context
       },
-      setCausa: -> (request){
-        puts "***********************************************************************************"
-        puts request
+      setLocation: -> (request){
         context = request["context"]
         entities = request["entities"]
-        
         session = Session.find(session_id)
-        causa = request["text"]
-        session.update(context: {causa: causa}, violence_reason: causa)
+        
+        location = first_entity_value(entities, "location") || context["location"]
+
+        if location
+          context['location'] = location
+          session.update(context: {location: location}, latitude: '-7.1668063', longitude: '-34.8348208')
+        else
+          context['missingLocation'] = true
+        end
+        
+        return context
+      },
+      setWhen: -> (request){
+        context = request["context"]
+        entities = request["entities"] 
+        session = Session.find(session_id)
+
+        whenValue = first_entity_value(entities, "datetime") || context["when"]
+       
+        session.update(context: {when: whenValue}, violence_date: whenValue)
+
+        return context
+      },
+      setReason: -> (request){
+        context = request["context"]
+        entities = request["entities"]
+        session = Session.find(session_id)
+        
+        reason = request["text"]
+        
+        session.update(context: {reason: reason}, violence_reason: reason)
+
         return context
       }
     }
@@ -77,7 +92,7 @@ class WitExtension
 
   def get_location
     location_element = Messenger::Templates::QuickReplies.new(
-      text: "Em qual rua, avenida ou ponto de referência isso aconteceu?",
+      text: "Por favor, informe no mapa o local aproximado onde a violência aconteceu.",
       quick_replies: [
           Messenger::Elements::QuickReply.new(
             content_type: 'location',
