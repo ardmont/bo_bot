@@ -72,4 +72,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: ENV["database_name"]
+  username: ENV["database_user_name"]
+  password: ENV["database_password"]
+  host: localhost
+  port: 5432
