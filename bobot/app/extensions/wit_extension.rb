@@ -41,12 +41,12 @@ class WitExtension
         context = request["context"]
         entities = request["entities"]
         session = Session.find(session_id)
-        
-        location = first_entity_value(entities, "location") || context["location"]
 
-        if location
-          context['location'] = location
-          session.update(context: {location: location}, latitude: '-7.1668063', longitude: '-34.8348208')
+        coordenates = find_coordenates(entities) || context["location"]
+
+        if coordenates[:latitude] && coordenates[:longitude]
+          context['location'] = coordenates
+          session.update(context: {location: coordenates}, latitude: coordenates[:latitude], longitude: coordenates[:longitude])
         else
           context['missingLocation'] = true
         end
@@ -57,10 +57,15 @@ class WitExtension
         context = request["context"]
         entities = request["entities"] 
         session = Session.find(session_id)
-
-        whenValue = first_entity_value(entities, "datetime") || context["when"]
        
-        session.update(context: {when: whenValue}, violence_date: whenValue)
+        whenValue = first_entity_value(entities, "datetime") || context["when"]
+
+        if whenValue
+          context['when'] = whenValue
+          session.update(context: {when: whenValue}, violence_date: whenValue)
+        else
+          context['missingWhen'] = true
+        end
 
         return context
       },
@@ -70,9 +75,14 @@ class WitExtension
         session = Session.find(session_id)
         
         reason = request["text"]
-        
-        session.update(context: {reason: reason}, violence_reason: reason)
 
+        if reason
+          context['reason'] = reason
+          session.update(context: {reason: reason}, violence_reason: reason)
+        else
+          context['missingReason'] = true
+        end
+  
         return context
       }
     }
@@ -101,6 +111,13 @@ class WitExtension
       ]
     )
     location_element
+  end
+
+  def find_coordenates(entities)
+    return nil unless entities.has_key? 'number'
+    latitude = "#{entities['number'][0]['value']}.#{entities['number'][1]['value']}"
+    longitude = "#{entities['number'][2]['value']}.#{entities['number'][3]['value']}"
+    {latitude: latitude, longitude: longitude}
   end
 
 end
