@@ -74,7 +74,7 @@ class WitExtension
         entities = request["entities"]
         session = Session.find(session_id)
         
-        reason = request["text"]
+        reason = request["text"] || context["reason"]
 
         if reason
           context['reason'] = reason
