@@ -5,9 +5,9 @@
         .module('bobotApp')
         .factory('GoogleMapsService',GoogleMapsService);
         GoogleMapsService.$inject = ['$http'];
-    
+
 function GoogleMapsService($http){
- 
+
   var apiKey = false;
   MercatorProjection.prototype.fromLatLngToPoint = function(latLng, opt_point) {
 				var me = this;
@@ -27,9 +27,9 @@ function GoogleMapsService($http){
 				var lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.PI / 2);
 				return new google.maps.LatLng(lat, lng);
 			};
- 
+
   function initMap(position, filtro){
- 
+
     var options = {timeout: 10000, enableHighAccuracy: true};
 		var zoom = 15;
       if(!position){
@@ -39,7 +39,87 @@ function GoogleMapsService($http){
       var mapOptions = {
         center: position,
         zoom: zoom,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
       };
 
 				//Verifica se o mapa ainda não foi iniciado e inializa caso seja null
@@ -58,7 +138,7 @@ function GoogleMapsService($http){
 				  });
                   var markers = [];
 				  // Estcuta o evento para quando o usuario selecionar um local no campo de consulta
-				  
+
 				  searchBox.addListener('places_changed', function() {
 				    var places = searchBox.getPlaces();
 
@@ -88,17 +168,17 @@ function GoogleMapsService($http){
 				      };
 
 				      if (place.geometry.viewport) {
-				       
+
 				        bounds.union(place.geometry.viewport);
 				      } else {
 				        bounds.extend(place.geometry.location);
 				      }
 				    });
 				    map.fitBounds(bounds);
-                     
+
 				  });
-					
- 
+
+
       //Aguardar até o mapa ser carregado para carregar as informações de violencia
       google.maps.event.addListenerOnce(map, 'idle', function(){
 
@@ -107,28 +187,28 @@ function GoogleMapsService($http){
 			else{
 				map.Map(document.getElementById("mapViewDiv"), mapOptions);
 			}
-		
+
 }
 
 //Remove todos os marcadores do mapa
 function clearMap() {
-        
+
         for (var i = 0; i < markersmap.length; i++) {
             markersmap[i].setMap(null);
         }
         markersmap=[];
         heatmap.setMap(null);
         markerCluster.clearMarkers();
-		
+
 };
- 
+
   function addMarkers(data){
 
         var records = data;
-  
+
         for (var i = 0; i < records.length; i++) {
- 
-          var record = records[i];   
+
+          var record = records[i];
           var markerPosition = new google.maps.LatLng(record.latitude, record.longitude);
           //Array de posiçoes
              heatmapData.push(markerPosition);
@@ -144,7 +224,7 @@ function clearMap() {
           markersmap.push(marker);
 
           addInfoWindow(marker, record);
- 
+
         }
         markerCluster = new MarkerClusterer(map, markersmap,
       	                {
@@ -162,12 +242,12 @@ function clearMap() {
 							radius: getNewRadius()
 
 		});
- 
- 
 
- 
+
+
+
   }
- 
+
   function addInfoWindow(marker, record) {
        var message = '<div id="iw-container">' +
                     '<div class="iw-title">'+record.tipo+'</div>' +
@@ -179,16 +259,16 @@ function clearMap() {
                       '<p>'+record.motivo+'</p>'+
                     '</div>' +
                     '<div class="iw-bottom-gradient"></div>' +
-                  '</div>';     
- 
+                  '</div>';
+
       var infoWindow = new google.maps.InfoWindow({
           content: message
       });
- 
+
       google.maps.event.addListener(marker, 'click', function () {
           infoWindow.open(map, marker);
       });
- 
+
   }
   function getNewRadius() {
 				var numTiles = 1 << map.getZoom();
@@ -233,6 +313,6 @@ function degreesToRadians(deg) {
 			addMarkers(data);
 		}
   }
- 
+
 }
 })();
