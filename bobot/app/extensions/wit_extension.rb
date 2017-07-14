@@ -30,10 +30,12 @@ class WitExtension
         
         if violence
           context['violence'] = violence
-          session.update(context: {violence: violence}, violence_type: violence)
+          context.delete("missingViolence")
         else
           context['missingViolence'] = true
         end
+
+        session.update(context: context, violence_type: violence)
 
         return context
       },
@@ -46,10 +48,12 @@ class WitExtension
 
         if coordenates[:latitude] && coordenates[:longitude]
           context['location'] = coordenates
-          session.update(context: {location: coordenates}, latitude: coordenates[:latitude], longitude: coordenates[:longitude])
+          context.delete("missingLocation")
         else
           context['missingLocation'] = true
         end
+
+        session.update(context: context, latitude: coordenates[:latitude], longitude: coordenates[:longitude])
         
         return context
       },
@@ -62,10 +66,12 @@ class WitExtension
 
         if whenValue
           context['when'] = whenValue
-          session.update(context: {when: whenValue}, violence_date: whenValue)
+          context.delete("missingWhen")
         else
           context['missingWhen'] = true
         end
+
+        session.update(context: context, violence_date: whenValue)
 
         return context
       },
@@ -78,11 +84,14 @@ class WitExtension
 
         if reason
           context['reason'] = reason
-          session.update(context: {reason: reason}, violence_reason: reason)
+          new_context = {}
         else
           context['missingReason'] = true
+          new_context = context
         end
-  
+
+        session.update(context: new_context, violence_reason: reason)
+
         return context
       }
     }
@@ -94,6 +103,7 @@ class WitExtension
   end
 
   def first_entity_value(entities, entity)
+    return nil unless entities
     return nil unless entities.has_key? entity
     val = entities[entity][0]['value']
     return nil if val.nil?
