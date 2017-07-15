@@ -8,6 +8,7 @@ end
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'wit'
 gem 'messenger-ruby'
+gem "koala"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

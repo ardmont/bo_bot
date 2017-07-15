@@ -29713,3 +29713,315 @@ Completed 200 OK in 9ms (ActiveRecord: 3.2ms)
 Completed 200 OK in 4377ms (ActiveRecord: 3.9ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (116.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "bobot_development"[0m
+  [1m[35m (111.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "bobot_test"[0m
+  [1m[35m (582.3ms)[0m  [1m[35mCREATE DATABASE "bobot_development" ENCODING = 'unicode'[0m
+  [1m[35m (471.8ms)[0m  [1m[35mCREATE DATABASE "bobot_test" ENCODING = 'unicode'[0m
+  [1m[35m (15.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4086704003127189465);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateSessions (20170615140056)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" serial primary key, "facebook_id" character varying, "last_exchange" timestamp, "context" text, "violence_type" character varying, "violence_date" timestamp, "violence_description" text, "violence_reason" text, "latitude" character varying, "longitude" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170615140056"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-15 12:54:05.455048"], ["updated_at", "2017-07-15 12:54:05.455048"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(4086704003127189465)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/messenger/webhook?hub.mode=subscribe&hub.challenge=805254836&hub.verify_token=bobot" for 2a03:2880:1110:8fd9:face:b00c:0:8000 at 2017-07-15 09:54:58 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Messenger::MessengerController#validate as */*
+  Parameters: {"hub.mode"=>"subscribe", "hub.challenge"=>"805254836", "hub.verify_token"=>"bobot"}
+Completed 200 OK in 745ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2111:5fe6:face:b00c:0:8000 at 2017-07-15 10:00:50 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123650141, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123649500, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd5ud3FdRlZVFfYSd", "seq"=>143220, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123650141, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123649500, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd5ud3FdRlZVFfYSd", "seq"=>143220, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (1.4ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 12:58:00.426833') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "sessions" ("facebook_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["facebook_id", "1483868001679606"], ["created_at", "2017-07-15 13:01:00.466728"], ["updated_at", "2017-07-15 13:01:00.466728"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:01:00.471704"], ["updated_at", "2017-07-15 13:01:00.472896"], ["id", 1]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/messenger/webhook" for 2a03:2880:2130:cfe8:face:b00c:0:8000 at 2017-07-15 10:01:05 -0300
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 9456ms (ActiveRecord: 13.1ms)
+
+
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123664808, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123649500, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd5ud3FdRlZVFfYSd", "seq"=>143220, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123664808, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123649500, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd5ud3FdRlZVFfYSd", "seq"=>143220, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 12:58:09.900590') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:01:09.917389"], ["updated_at", "2017-07-15 13:01:09.919184"], ["id", 1]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 4992ms (ActiveRecord: 3.6ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fc4:face:b00c:0:8000 at 2017-07-15 10:02:11 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123731252, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123731251, "read"=>{"watermark"=>1500123673268, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123731252, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123731251, "read"=>{"watermark"=>1500123673268, "seq"=>0}}]}]}}
+  [1m[36mSession Load (1.3ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 12:59:11.501857') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:02:11.505423"], ["updated_at", "2017-07-15 13:02:11.507441"], ["id", 1]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 13ms (ActiveRecord: 4.3ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2111:5fed:face:b00c:0:8000 at 2017-07-15 10:02:49 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123768990, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123768870, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd51wJldRlgnmFV3e", "seq"=>143226, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123768990, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123768870, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd51wJldRlgnmFV3e", "seq"=>143226, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (2.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 12:59:49.223813') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.9ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:02:49.254190"], ["updated_at", "2017-07-15 13:02:49.258320"], ["id", 1]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 6945ms (ActiveRecord: 14.0ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fc2:face:b00c:0:8000 at 2017-07-15 10:04:21 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123861501, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123861500, "read"=>{"watermark"=>1500123773993, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123861501, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123861500, "read"=>{"watermark"=>1500123773993, "seq"=>0}}]}]}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:01:21.711871') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:04:21.729119"], ["updated_at", "2017-07-15 13:04:21.730605"], ["id", 1]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 38ms (ActiveRecord: 4.2ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2111:5ff8:face:b00c:0:8000 at 2017-07-15 10:04:24 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123863958, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123863843, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd57jI1dRlmaiKasm", "seq"=>143230, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123863958, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123863843, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd57jI1dRlmaiKasm", "seq"=>143230, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:01:24.178355') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:04:24.180563"], ["updated_at", "2017-07-15 13:04:24.181905"], ["id", 1]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "sessions" SET "context" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["context", "---\nname: Gleydson\n"], ["updated_at", "2017-07-15 13:04:26.472060"], ["id", 1]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 10891ms (ActiveRecord: 6.6ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fe9:face:b00c:0:8000 at 2017-07-15 10:05:04 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123904529, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123904528, "read"=>{"watermark"=>1500123873302, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500123904529, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500123904528, "read"=>{"watermark"=>1500123873302, "seq"=>0}}]}]}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:02:04.760737') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:05:04.763254"], ["updated_at", "2017-07-15 13:05:04.765006"], ["id", 1]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 11ms (ActiveRecord: 3.6ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3ff0:face:b00c:0:8000 at 2017-07-15 10:18:51 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124731671, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124731538, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd6wgkldRmbX-23NH", "seq"=>143235, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124731671, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124731538, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd6wgkldRmbX-23NH", "seq"=>143235, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:15:52.721855') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "sessions" ("facebook_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["facebook_id", "1483868001679606"], ["created_at", "2017-07-15 13:18:52.744600"], ["updated_at", "2017-07-15 13:18:52.744600"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:18:52.749521"], ["updated_at", "2017-07-15 13:18:52.750884"], ["id", 2]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "context" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["context", "---\nname: Gleydson\n"], ["updated_at", "2017-07-15 13:18:55.795477"], ["id", 2]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 10174ms (ActiveRecord: 16.1ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fe9:face:b00c:0:8000 at 2017-07-15 10:19:03 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124743090, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124743089, "read"=>{"watermark"=>1500124741002, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124743090, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124743089, "read"=>{"watermark"=>1500124741002, "seq"=>0}}]}]}}
+  [1m[36mSession Load (2.6ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:16:03.357636') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:19:03.363307"], ["updated_at", "2017-07-15 13:19:03.364962"], ["id", 2]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 13ms (ActiveRecord: 5.3ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2111:bfc4:face:b00c:0:8000 at 2017-07-15 10:19:24 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124764039, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124763911, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd6yfB1dRmdWeKDwA", "seq"=>143240, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124764039, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124763911, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd6yfB1dRmdWeKDwA", "seq"=>143240, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:16:34.276025') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:19:34.296682"], ["updated_at", "2017-07-15 13:19:34.300953"], ["id", 2]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/messenger/webhook" for 2a03:2880:2130:cfe1:face:b00c:0:8000 at 2017-07-15 10:19:38 -0300
+Completed 200 OK in 8884ms (ActiveRecord: 5.2ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fd8:face:b00c:0:8000 at 2017-07-15 10:19:43 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124778581, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124763911, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd6yfB1dRmdWeKDwA", "seq"=>143240, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124778581, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124763911, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd6yfB1dRmdWeKDwA", "seq"=>143240, "text"=>"oi"}}]}]}}
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124779619, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124779618, "read"=>{"watermark"=>1500124779336, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124779619, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124779618, "read"=>{"watermark"=>1500124779336, "seq"=>0}}]}]}}
+  [1m[36mSession Load (2.0ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:16:43.207672') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mSession Load (45.2ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:16:43.210769') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:19:43.257759"], ["updated_at", "2017-07-15 13:19:43.262814"], ["id", 2]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 72ms (ActiveRecord: 48.7ms)
+
+
+  [1m[35mSQL (10.5ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:19:43.256641"], ["updated_at", "2017-07-15 13:19:43.259981"], ["id", 2]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fe6:face:b00c:0:8000 at 2017-07-15 10:19:49 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124789432, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124789431, "read"=>{"watermark"=>1500124789155, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124789432, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124789431, "read"=>{"watermark"=>1500124789155, "seq"=>0}}]}]}}
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:16:49.645876') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:19:49.648274"], ["updated_at", "2017-07-15 13:19:49.649730"], ["id", 2]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 10ms (ActiveRecord: 3.6ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fc4:face:b00c:0:8000 at 2017-07-15 10:19:51 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124791430, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124791429, "read"=>{"watermark"=>1500124791062, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124791430, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124791429, "read"=>{"watermark"=>1500124791062, "seq"=>0}}]}]}}
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:16:51.645178') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:19:51.647984"], ["updated_at", "2017-07-15 13:19:51.649777"], ["id", 2]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 12ms (ActiveRecord: 3.5ms)
+
+
+Completed 200 OK in 9343ms (ActiveRecord: 17.3ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2130:cff5:face:b00c:0:1 at 2017-07-15 10:23:18 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124998092, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124997970, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7AxUldRmrowKfv3", "seq"=>143250, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500124998092, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500124997970, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7AxUldRmrowKfv3", "seq"=>143250, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:20:18.320836') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "sessions" ("facebook_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["facebook_id", "1483868001679606"], ["created_at", "2017-07-15 13:23:18.341989"], ["updated_at", "2017-07-15 13:23:18.341989"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:23:18.346957"], ["updated_at", "2017-07-15 13:23:18.347878"], ["id", 3]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (1.4ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "context" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["context", "---\nname: Gleydson\n"], ["updated_at", "2017-07-15 13:23:20.804430"], ["id", 3]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 8805ms (ActiveRecord: 9.6ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fce:face:b00c:0:8000 at 2017-07-15 10:24:01 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125041126, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125041125, "read"=>{"watermark"=>1500125005469, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125041126, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125041125, "read"=>{"watermark"=>1500125005469, "seq"=>0}}]}]}}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:21:01.329926') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:24:01.332192"], ["updated_at", "2017-07-15 13:24:01.333492"], ["id", 3]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 9ms (ActiveRecord: 3.3ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fca:face:b00c:0:8000 at 2017-07-15 10:28:34 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125313894, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125313768, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7UC6FdRm-6TZORR", "seq"=>143255, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125313894, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125313768, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7UC6FdRm-6TZORR", "seq"=>143255, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (1.3ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:25:35.084714') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "sessions" ("facebook_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["facebook_id", "1483868001679606"], ["created_at", "2017-07-15 13:28:35.115480"], ["updated_at", "2017-07-15 13:28:35.115480"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:28:35.120620"], ["updated_at", "2017-07-15 13:28:35.121708"], ["id", 4]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "context" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["context", "---\nname: Gleydson\n"], ["updated_at", "2017-07-15 13:28:37.816669"], ["id", 4]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 9968ms (ActiveRecord: 17.3ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fef:face:b00c:0:8000 at 2017-07-15 10:28:47 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125327180, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125327171, "read"=>{"watermark"=>1500125322864, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125327180, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125327171, "read"=>{"watermark"=>1500125322864, "seq"=>0}}]}]}}
+  [1m[36mSession Load (1.4ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:25:47.405515') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:28:47.408836"], ["updated_at", "2017-07-15 13:28:47.410265"], ["id", 4]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 11ms (ActiveRecord: 4.2ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2111:bfda:face:b00c:0:8000 at 2017-07-15 10:32:47 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125567598, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125567463, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7jh51dRnOZTc4pE", "seq"=>143260, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125567598, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125567463, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7jh51dRnOZTc4pE", "seq"=>143260, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:29:48.844982') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "sessions" ("facebook_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["facebook_id", "1483868001679606"], ["created_at", "2017-07-15 13:32:48.875117"], ["updated_at", "2017-07-15 13:32:48.875117"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:32:48.880146"], ["updated_at", "2017-07-15 13:32:48.881371"], ["id", 5]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.4ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "context" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["context", "---\nname: Gleydson\n"], ["updated_at", "2017-07-15 13:32:51.534270"], ["id", 5]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 8998ms (ActiveRecord: 18.0ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fc9:face:b00c:0:8000 at 2017-07-15 10:32:59 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125578824, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125578823, "read"=>{"watermark"=>1500125575467, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125578824, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125578823, "read"=>{"watermark"=>1500125575467, "seq"=>0}}]}]}}
+  [1m[36mSession Load (1.4ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:29:59.032766') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:32:59.035974"], ["updated_at", "2017-07-15 13:32:59.037583"], ["id", 5]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 12ms (ActiveRecord: 4.2ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2111:bfef:face:b00c:0:8000 at 2017-07-15 10:34:00 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125640099, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125639969, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7n9IVdRnS0iqOEo", "seq"=>143265, "text"=>"oi"}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125640099, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125639969, "message"=>{"mid"=>"mid.$cAADxiSNvdEFjd7n9IVdRnS0iqOEo", "seq"=>143265, "text"=>"oi"}}]}]}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:31:00.270608') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:34:00.272759"], ["updated_at", "2017-07-15 13:34:00.274190"], ["id", 5]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fcd:face:b00c:0:8000 at 2017-07-15 10:34:05 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125645156, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125645155, "read"=>{"watermark"=>1500125644877, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125645156, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125645155, "read"=>{"watermark"=>1500125644877, "seq"=>0}}]}]}}
+  [1m[36mSession Load (1.5ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:31:05.366583') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:34:05.371419"], ["updated_at", "2017-07-15 13:34:05.373191"], ["id", 5]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 14ms (ActiveRecord: 4.5ms)
+
+
+Completed 200 OK in 8945ms (ActiveRecord: 4.8ms)
+
+
+Started POST "/messenger/webhook" for 2a03:2880:2120:3fe9:face:b00c:0:8000 at 2017-07-15 10:34:12 -0300
+Processing by MessengerController#webhook as */*
+  Parameters: {"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125652182, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125652181, "read"=>{"watermark"=>1500125647395, "seq"=>0}}]}], "messenger"=>{"object"=>"page", "entry"=>[{"id"=>"188541698341604", "time"=>1500125652182, "messaging"=>[{"sender"=>{"id"=>"1483868001679606"}, "recipient"=>{"id"=>"188541698341604"}, "timestamp"=>1500125652181, "read"=>{"watermark"=>1500125647395, "seq"=>0}}]}]}}
+  [1m[36mSession Load (0.8ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE (facebook_id = '1483868001679606' AND last_exchange >= '2017-07-15 13:31:12.421200') LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "sessions" SET "last_exchange" = $1, "updated_at" = $2 WHERE "sessions"."id" = $3[0m  [["last_exchange", "2017-07-15 13:34:12.424151"], ["updated_at", "2017-07-15 13:34:12.425737"], ["id", 5]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 11ms (ActiveRecord: 3.2ms)
+
+

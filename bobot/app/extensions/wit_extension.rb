@@ -1,4 +1,5 @@
 require 'wit'
+require 'koala'
 
 class WitExtension
 
@@ -20,6 +21,20 @@ class WitExtension
           ) 
         end
 
+      },
+      setUserProfile: -> (request) {
+        context = request["context"]
+        entities = request["entities"]
+        session = Session.find(session_id)
+
+        user_profile = get_profile(sender_id)
+
+        if user_profile
+          context['name'] = user_profile['first_name']
+          session.update(context: context)
+        end
+
+        return context
       },
       setViolence: -> (request) {
         context = request["context"]
@@ -129,6 +144,11 @@ class WitExtension
     latitude = "#{entities['number'][0]['value']}.#{entities['number'][1]['value']}"
     longitude = "#{entities['number'][2]['value']}.#{entities['number'][3]['value']}"
     {latitude: latitude, longitude: longitude}
+  end
+
+  def get_profile(sender_id)
+     graph = Koala::Facebook::API.new
+     graph.get_object(sender_id)
   end
 
 end
