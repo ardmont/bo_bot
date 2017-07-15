@@ -26,7 +26,7 @@ class WitExtension
         entities = request["entities"]
         session = Session.find(session_id)
 
-        violence = first_entity_value(entities, "violence") || context["violence"]
+        violence = first_entity_value(entities, "violence")
         
         if violence
           context['violence'] = violence
@@ -44,17 +44,17 @@ class WitExtension
         entities = request["entities"]
         session = Session.find(session_id)
 
-        coordenates = find_coordenates(entities) || context["location"]
+        coordenates = find_coordenates(entities)
 
-        if coordenates[:latitude] && coordenates[:longitude]
-          context['location'] = coordenates
-          context.delete("missingLocation")
+        unless coordenates.nil?
+            context['location'] = coordenates
+            context.delete("missingLocation")
+            session.update(context: context, latitude: coordenates[:latitude], longitude: coordenates[:longitude])
         else
-          context['missingLocation'] = true
+            context['missingLocation'] = true
+            session.update(context: context)
         end
 
-        session.update(context: context, latitude: coordenates[:latitude], longitude: coordenates[:longitude])
-        
         return context
       },
       setWhen: -> (request){
@@ -62,7 +62,7 @@ class WitExtension
         entities = request["entities"] 
         session = Session.find(session_id)
        
-        whenValue = first_entity_value(entities, "datetime") || context["when"]
+        whenValue = first_entity_value(entities, "datetime")
 
         if whenValue
           context['when'] = whenValue
@@ -80,7 +80,7 @@ class WitExtension
         entities = request["entities"]
         session = Session.find(session_id)
         
-        reason = request["text"] || context["reason"]
+        reason = request["text"]
 
         if reason
           context['reason'] = reason
@@ -124,6 +124,7 @@ class WitExtension
   end
 
   def find_coordenates(entities)
+    return nil unless entities
     return nil unless entities.has_key? 'number'
     latitude = "#{entities['number'][0]['value']}.#{entities['number'][1]['value']}"
     longitude = "#{entities['number'][2]['value']}.#{entities['number'][3]['value']}"
