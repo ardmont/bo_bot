@@ -5,6 +5,11 @@ html,body{
 .container{
 	margin: 0px;
 }
+.navbar{
+	border-radius: 0px;
+	margin: 0px;
+}
+
 .divInfo{
 	/*border: 2px solid  #ccccb3;
 	border-radius: 5px;*/
