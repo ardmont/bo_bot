@@ -18,6 +18,11 @@ html,body{
 	border: 1px solid #e0e0eb;
 }
 
+#divBanner{
+	padding: 0px;
+	width: 100%;
+}
+
 #navegacao{
 	border-color: #ccccb3;
 	margin-top: 5px;
@@ -45,7 +50,7 @@ html,body{
 #containerMapa{
   height: 100%;
   width: 100%;
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
