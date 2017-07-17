@@ -90,6 +90,24 @@ class WitExtension
 
         return context
       },
+      setDescription: -> (request){
+        context = request["context"]
+        entities = request["entities"]
+        session = Session.find(session_id)
+        
+        description = request["text"]
+
+        if description
+          context['description'] = description
+          new_context = {}
+        else
+          context['missingDescription'] = true
+        end
+
+        session.update(context: context, violence_description: description)
+
+        return context
+      }
       setReason: -> (request){
         context = request["context"]
         entities = request["entities"]
