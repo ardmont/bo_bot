@@ -17,6 +17,12 @@ a{
 	padding: 0px;
 	margin-top: 0px;
 }
+
+.modal-content{
+	background-color: #404040;
+	color: white;
+	font-family: 'Rasa', serif;
+}
 /* /OVERRIDES */
 
 .divInfo{
