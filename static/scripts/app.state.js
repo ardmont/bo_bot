@@ -33,9 +33,10 @@
             url: '/estatistica',
             views: {
                 'content@': {
+                    controller:'ChartController',
+                    controllerAs: 'vm',
                     templateUrl: 'estatisticas.html',
-                    
-                   
+
                 }
             }
         });

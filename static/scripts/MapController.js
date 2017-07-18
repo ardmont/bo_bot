@@ -5,9 +5,9 @@
         .module('bobotApp')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$scope', 'GoogleMapsService', 'Violence','$http', '$uibModal'];
+    MapController.$inject = ['$scope', 'GoogleMapsService', 'Violence','$http', '$uibModal', '$sessionStorage'];
 
-    function MapController ($scope,GoogleMapsService,Violence, $http, $uibModal) {
+    function MapController ($scope,GoogleMapsService,Violence, $http, $uibModal, $sessionStorage) {
         var vm = this;
         vm.selectedTipo;
         vm.filtrarPorTipo = filtrarPorTipo;
@@ -16,19 +16,28 @@
             GoogleMapsService.init(undefined, $scope.selectedTipo);
         }
         //GoogleMaps.init();
-        
-        navigator.geolocation.getCurrentPosition(function(position){
-            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            GoogleMapsService.init(latlng);
-            Violence.query(function(result){
-            console.log(result);
-            GoogleMapsService.addMarker('result');
-        });
-      
-        }, function(error){
-            console.log("Could not get location");
- 
-            GoogleMapsService.init();
-        });
+        if(!$sessionStorage.location) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                $sessionStorage.location = latlng;
+                GoogleMapsService.init(latlng);
+                Violence.query(function (result) {
+                    console.log(result);
+                    GoogleMapsService.addMarker(result);
+                });
+
+            }, function (error) {
+                console.log("Could not get location");
+
+                GoogleMapsService.init();
+            });
+        }
+        else{
+            GoogleMapsService.init($sessionStorage.location);
+            Violence.query(function (result) {
+                console.log(result);
+                GoogleMapsService.addMarker(result);
+            });
+        }
 }
 })();
