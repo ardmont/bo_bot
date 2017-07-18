@@ -118,7 +118,7 @@ angular.module("bobotApp",[]).factory('GoogleMaps', function($http){
  
   function loadMarkers(){
       //Get all of the markers from our Markers factory
-      $http.get('http://32205231.ngrok.io/getOcorrencias').then(function(markers){
+      $http.get('https://hackfestbobot.herokuapp.com/messenger/get_violence').then(function(markers){
  
         console.log("Markers: ", markers);
  	
