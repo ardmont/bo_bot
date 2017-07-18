@@ -1,0 +1,4 @@
+bobot/.env
+bobot/config/application.yml
+bobot/config/database.yml
+bobot/log/*
