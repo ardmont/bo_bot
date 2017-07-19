@@ -1,5 +1,3 @@
 {
-    "directory": "static/scripts/bower_components",
-    "proxy":"http://52855:Elieberns06@internet-pvh.mpro.gov:3128/",
-    "https-proxy":"http://52855:Elieberns06@internet-pvh.mpro.gov:3128/"
+    "directory": "static/scripts/bower_components"
 }

@@ -1,29 +1,26 @@
 
-         <div class="container">
+         <div class="box">
 			 <div class="row">
-				 <div class="col-md-6">
-					 <!-- AREA CHART -->
-					 <div class="panel panel-default">
-						 <div class="panel-heading">
-							 <h5 class="title">Area Chart</h5>
 
-						 </div>
-						 <div class="panel-body">
-							 <div class="chart">
-								 <canvas id="bar" class="chart chart-bar"
-										 chart-data="vm.data" chart-labels="vm.labels">
-								 </canvas>
+
+							 <div class="col-lg-6 col-sm-12" id="bar-chart" >
+								 <div class="panel panel-default">
+									 <div class="panel-heading">Violências resgistradas por mês</div>
+									 <div class="panel-body">
+										 <canvas id="bar" class="chart chart-bar" data="vm.bar.data" labels="vm.bar.labels" series="vm.bar.series"></canvas>
+									 </div>
+								 </div>
 							 </div>
-						 </div>
-						 <!-- /.box-body -->
+
+
+			 <div class="col-lg-6 col-sm-12" id="pie-chart" >
+				 <div class="panel panel-default">
+					 <div class="panel-heading">Violências por tipo</div>
+					 <div class="panel-body">
+						 <canvas id="pie" class="chart chart-pie chart-xs" data="vm.pie.data" labels="vm.pie.labels"></canvas>
 					 </div>
-					 <!-- /.box -->
-
-
 				 </div>
-				 <!-- /.col (RIGHT) -->
 			 </div>
-			 <!-- /.row -->
-
+			 </div>
 
           </div>
