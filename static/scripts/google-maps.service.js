@@ -197,7 +197,7 @@ var clearmap = function clearMap() {
             markersmap[i].setMap(null);
         }
         markersmap=[];
-        heatmap.setMap(null);
+       // heatmap.setMap(null);
         markerCluster.clearMarkers();
 
 };
@@ -248,24 +248,82 @@ var clearmap = function clearMap() {
   }
 
   function addInfoWindow(marker, record) {
-       var message = '<div id="iw-container">' +
-                    '<div class="iw-title">'+record.tipo+'</div>' +
-                    '<div class="iw-content">' +
-                      '<div class="iw-subTitle">Período da ocorrência: '+record.turno+'</div>' +
-											'<div class="iw-subTitle">Descrição do fato</div>' +
-                      '<p>'+record.descricao+'</p>' +
-                      '<div class="iw-subTitle">Motivo</div>' +
-                      '<p>'+record.motivo+'</p>'+
-                    '</div>' +
-                    '<div class="iw-bottom-gradient"></div>' +
-                  '</div>';
+       var message ='<div id="iw-container">' +
+           '<div class="iw-title">'+record.violence_type+'</div>' +
+           '<div class="iw-content">' +
+           '<div class="iw-subTitle">'+record.violence_reason+'</div>' +
+           '<p>'+record.violence_description +"."+'</p>' +
+           '<div class="iw-subTitle">Pode ser informado contatos de denuncia aqui</div>' +
+           '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
+           '<br>Tel. +351 234 320 600<br>email: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+           '</div>' +
+           '<div class="iw-bottom-gradient"></div>' +
+           '</div>';
 
       var infoWindow = new google.maps.InfoWindow({
           content: message
+
       });
 
       google.maps.event.addListener(marker, 'click', function () {
+          infoWindow.close();
           infoWindow.open(map, marker);
+      });
+      // Evento que fecha a infoWindow com click no mapa
+      google.maps.event.addListener(map, 'click', function() {
+          infoWindow.close();
+      });
+      // *
+      // INICIO DA PERSONALIZAÇÃO DA INFOWINDOW.
+      // O evento google.maps.event.addListener() espera pela
+      // criação da estrutura HTML da infowindow 'domready'
+      // e antes da abertura da infowindow serão aplicados
+      // os estilos definidos
+      // *
+      google.maps.event.addListener(infoWindow, 'domready', function() {
+
+          // Referência ao DIV que agrupa o fundo da infowindow
+          var iwOuter = $('.gm-style-iw');
+
+          /* Uma vez que o div pretendido está numa posição anterior ao div .gm-style-iw.
+           * Recorremos ao jQuery e criamos uma variável iwBackground,
+           * e aproveitamos a referência já existente do .gm-style-iw para obter o div anterior com .prev().
+           */
+          var iwBackground = iwOuter.prev();
+
+          // Remover o div da sombra do fundo
+          iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+          // Remover o div de fundo branco
+          iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+          // Desloca a infowindow 115px para a direita
+          iwOuter.parent().parent().css({left: '115px'});
+
+          // Desloca a sombra da seta a 76px da margem esquerda
+          iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+          // Desloca a seta a 76px da margem esquerda
+          iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+          // Altera a cor desejada para a sombra da cauda
+          iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+          // Referência ao DIV que agrupa os elementos do botão fechar
+          var iwCloseBtn = iwOuter.next();
+
+          // Aplica o efeito desejado ao botão fechar
+          iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
+
+          // Se o conteúdo da infowindow não ultrapassar a altura máxima definida, então o gradiente é removido.
+          if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+          }
+
+          // A API aplica automaticamente 0.7 de opacidade ao botão após o evento mouseout. Esta função reverte esse evento para o valor desejado.
+          iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+          });
       });
 
   }
