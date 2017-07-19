@@ -33,6 +33,7 @@
             });
         }
         else{
+            GoogleMapsService.clear();
             GoogleMapsService.init($sessionStorage.location);
             Violence.query(function (result) {
                 console.log(result);

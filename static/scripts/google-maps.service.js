@@ -4,9 +4,9 @@
     angular
         .module('bobotApp')
         .factory('GoogleMapsService',GoogleMapsService);
-        GoogleMapsService.$inject = ['$http'];
+        GoogleMapsService.$inject = ['$http', '$sessionStorage'];
 
-function GoogleMapsService($http){
+function GoogleMapsService($http, $sessionStorage){
 
   var apiKey = false;
   MercatorProjection.prototype.fromLatLngToPoint = function(latLng, opt_point) {
@@ -30,13 +30,14 @@ function GoogleMapsService($http){
 
   function initMap(position, filtro){
 
-    var options = {timeout: 10000, enableHighAccuracy: true};
-		var zoom = 15;
+      var zoom = 15;
       if(!position){
         position = new google.maps.LatLng(-14.0491211, -60.4393422);
 				zoom = 5;
       }
       var mapOptions = {
+        timeout: 10000,
+        enableHighAccuracy: true,
         center: position,
         zoom: zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -123,11 +124,11 @@ function GoogleMapsService($http){
       };
 
 				//Verifica se o mapa ainda não foi iniciado e inializa caso seja null
-				if(map === null){
+				if(!$sessionStorage.map){
 					map = new google.maps.Map(document.getElementById("mapViewDiv"), mapOptions);
 					 var imagem = 'img/alerta.png';
 
-                 // Cria um elemento de pesquisa integrado ao mapa
+					 // Cria um elemento de pesquisa integrado ao mapa
 				  var input = document.getElementById('localConsultado');
 				  var searchBox = new google.maps.places.SearchBox(input);
 				 // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); se desejar colocar o serachBox sobre o mapa descomente essa linha
@@ -177,21 +178,20 @@ function GoogleMapsService($http){
 				    map.fitBounds(bounds);
 
 				  });
+                    //Aguardar até o mapa ser carregado para carregar as informações de violencia
+                google.maps.event.addListenerOnce(map, 'idle', function(){
 
-
-      //Aguardar até o mapa ser carregado para carregar as informações de violencia
-      google.maps.event.addListenerOnce(map, 'idle', function(){
-
-      });
+            });
 			}
 			else{
-				map.Map(document.getElementById("mapViewDiv"), mapOptions);
+				//map = $sessionStorage.map;
+
 			}
 
 }
 
 //Remove todos os marcadores do mapa
-function clearMap() {
+var clearmap = function clearMap() {
 
         for (var i = 0; i < markersmap.length; i++) {
             markersmap[i].setMap(null);
@@ -217,8 +217,7 @@ function clearMap() {
           var marker = new google.maps.Marker({
               map: map,
               animation: google.maps.Animation.DROP,
-              position: markerPosition,
-              icon:"../Img/"+record.tipo+".png"
+              position: markerPosition
           });
           //Array de marcadores
           markersmap.push(marker);
@@ -311,7 +310,8 @@ function degreesToRadians(deg) {
     },
 		addMarker:function(data){
 			addMarkers(data);
-		}
+		},
+      clear:clearmap
   }
 
 }
