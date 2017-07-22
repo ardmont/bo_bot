@@ -4,8 +4,13 @@ require 'koala'
 class WitExtension
 
   def initialize(sender_id, session_id)
+    puts "#####################################################3"
+    puts sender_id
+    puts session_id
     actions = {
-      send: -> (request, response) {        
+      send: -> (request, response) {
+        puts request
+        puts response        
         if response['quickreplies']
           if response['quickreplies'][0] == 'get_location'
             Messenger::Client.send(
@@ -95,19 +100,19 @@ class WitExtension
         entities = request["entities"]
         session = Session.find(session_id)
         
-        description = request["text"]
+        characteristics = get_characteristics(entities)
 
-        if description
-          context['description'] = description
-          new_context = {}
+        if characteristics
+          context['description'] = characteristics
+          context.delete("missingDescription")
         else
           context['missingDescription'] = true
         end
 
-        session.update(context: context, violence_description: description)
+        session.update(context: context, violence_description: characteristics)
 
         return context
-      }
+      },
       setReason: -> (request){
         context = request["context"]
         entities = request["entities"]
@@ -117,6 +122,7 @@ class WitExtension
 
         if reason
           context['reason'] = reason
+          context.delete("missingReason")
           new_context = {}
         else
           context['missingReason'] = true
@@ -125,7 +131,7 @@ class WitExtension
 
         session.update(context: new_context, violence_reason: reason)
 
-        return context
+        return new_context
       }
     }
     @client ||= Wit.new(access_token: ENV['WIT_TOKEN'],actions: actions)
@@ -135,38 +141,46 @@ class WitExtension
     return @client
   end
 
-  def first_entity_value(entities, entity)
-    return nil unless entities
-    return nil unless entities.has_key? entity
-    val = entities[entity][0]['value']
-    return nil if val.nil?
-    return val.is_a?(Hash) ? val['value'] : val
-  end
+  private 
 
-  def get_location
-    location_element = Messenger::Templates::QuickReplies.new(
-      text: "Por favor, informe no mapa o local aproximado onde a violência aconteceu.",
-      quick_replies: [
-          Messenger::Elements::QuickReply.new(
-            content_type: 'location',
-            title: 'Localização',
-          )
-      ]
-    )
-    location_element
-  end
+    def first_entity_value(entities, entity)
+      return nil unless entities
+      return nil unless entities.has_key? entity
+      val = entities[entity][0]['value']
+      return nil if val.nil?
+      return val.is_a?(Hash) ? val['value'] : val
+    end
 
-  def find_coordenates(entities)
-    return nil unless entities
-    return nil unless entities.has_key? 'number'
-    latitude = "#{entities['number'][0]['value']}.#{entities['number'][1]['value']}"
-    longitude = "#{entities['number'][2]['value']}.#{entities['number'][3]['value']}"
-    {latitude: latitude, longitude: longitude}
-  end
+    def get_location
+      location_element = Messenger::Templates::QuickReplies.new(
+        text: "Por favor, informe no mapa o local aproximado onde a violência aconteceu.",
+        quick_replies: [
+            Messenger::Elements::QuickReply.new(
+              content_type: 'location',
+              title: 'Localização',
+            )
+        ]
+      )
+      location_element
+    end
 
-  def get_profile(sender_id)
-     graph = Koala::Facebook::API.new
-     graph.get_object(sender_id)
-  end
+    def find_coordenates(entities)
+      return nil unless entities
+      return nil unless entities.has_key? 'number'
+      latitude = "#{entities['number'][0]['value']}.#{entities['number'][1]['value']}"
+      longitude = "#{entities['number'][2]['value']}.#{entities['number'][3]['value']}"
+      {latitude: latitude, longitude: longitude}
+    end
+
+    def get_profile(sender_id)
+      graph = Koala::Facebook::API.new
+      graph.get_object(sender_id)
+    end
+
+    def get_characteristics(entities)
+      return nil unless entities
+      keys = ['veiculo', 'cor_pele', 'arma_branca', 'violence']
+      return entities.select{|k, v| keys.include?(k) }
+    end
 
 end
