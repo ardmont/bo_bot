@@ -32841,3 +32841,48 @@ Processing by MessengerController#get_violence_by_type as */*
 Completed 200 OK in 24ms (Views: 6.2ms | ActiveRecord: 0.6ms)
 
 
+  [1m[36mSession Load (1.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions"[0m
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions"."id" FROM "sessions"[0m
+  [1m[36mSession Load (5.0ms)[0m  [1m[34mSELECT "location" FROM "sessions"[0m
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT "sessions"."context" FROM "sessions"[0m
+  [1m[36mSession Load (1.1ms)[0m  [1m[34mSELECT "sessions"."violence_type" FROM "sessions"[0m
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude" FROM "sessions"[0m
+  [1m[36mSession Load (1.0ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."violence_type" = $1 LIMIT $2[0m  [["violence_type", "assalto"], ["LIMIT", 1]]
+  [1m[36mSession Load (1.0ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."violence_type" = $1 LIMIT $2[0m  [["violence_type", "assalto"], ["LIMIT", 1]]
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT  "sessions".* FROM "sessions" WHERE "sessions"."violence_type" = $1 LIMIT $2[0m  [["violence_type", "assalto"], ["LIMIT", 1]]
+  [1m[36mSession Load (0.7ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assalto"]]
+Started GET "/messenger/get_violence" for 187.64.17.47 at 2017-07-22 15:05:04 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MessengerController#get_violence as */*
+  Parameters: {"messenger"=>{}}
+  [1m[36mSession Load (0.9ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions"[0m
+No serializer found for resource: #<Session id: nil, violence_type: "assalto", violence_date: "2017-07-21T21:00:00.000-03:00", violence_description: nil, violence_reason: nil, latitude: "-7.1674172", longitude: "-34.8320511", updated_at: "2017-07-22 17:16:22">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Session::ActiveRecord_Relation (0.4ms)
+Completed 200 OK in 36ms (Views: 22.8ms | ActiveRecord: 8.9ms)
+
+
+Started GET "/messenger/get_violence_by_type/assalto" for 187.64.17.47 at 2017-07-22 15:05:26 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assalto", "messenger"=>{}}
+  [1m[36mSession Load (1.2ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assalto"]]
+No serializer found for resource: #<Session id: nil, violence_type: "assalto", violence_date: "2017-07-21T21:00:00.000-03:00", violence_description: nil, violence_reason: nil, latitude: "-7.1674172", longitude: "-34.8320511", updated_at: "2017-07-22 17:16:22">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Session::ActiveRecord_Relation (0.34ms)
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/messenger/get_violence_by_type/sei%20nao" for 187.64.17.47 at 2017-07-22 15:05:34 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"sei nao", "messenger"=>{}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "sei nao"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (1.54ms)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/messenger/get_violence_by_type/sei" for 187.64.17.47 at 2017-07-22 15:05:39 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"sei", "messenger"=>{}}
+  [1m[36mSession Load (0.5ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "sei"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (0.24ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.5ms)
+
+
