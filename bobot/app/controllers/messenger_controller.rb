@@ -16,8 +16,13 @@ class MessengerController < Messenger::MessengerController
   end
 
   def get_violence
-    violence = Session.all
-    render json: violence
+    sessions = Session.all
+    render json: sessions
+  end
+
+  def get_violence_by_type
+    sessions = Session.find_by_violence_type(params[:violence_type])
+    render json: sessions
   end
 
   private
