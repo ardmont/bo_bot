@@ -17,12 +17,20 @@ class MessengerController < Messenger::MessengerController
 
   def get_violence
     sessions = Session.all.select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
-    render json: sessions
+    if sessions.empty?
+      render json: "[]"
+    else
+      render json: sessions
+    end
   end
 
   def get_violence_by_type
     sessions = Session.where(violence_type: params[:violence_type]).select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
-    render json: sessions
+    if sessions.empty?
+      render json: "[]"
+    else
+      render json: sessions
+    end
   end
 
   private

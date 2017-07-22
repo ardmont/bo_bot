@@ -32886,3 +32886,89 @@ Processing by MessengerController#get_violence_by_type as */*
 Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:29:39 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+Completed 200 OK in 11ms (Views: 2.8ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:29:59 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+  [1m[36mSession Load (1.8ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assaltos"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (1.25ms)
+Completed 200 OK in 22ms (Views: 14.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:31:49 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assaltos"]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `has_key?' for #<ActiveRecord::Relation []>
+Did you mean?  has_include?):
+  
+app/controllers/messenger_controller.rb:25:in `get_violence_by_type'
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:32:53 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+No template found for MessengerController#get_violence_by_type, rendering head :no_content
+Completed 204 No Content in 20ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:33:31 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+  [1m[36mSession Load (0.6ms)[0m  [1m[34mSELECT "sessions"."violence_type", "sessions"."violence_date", "sessions"."violence_description", "sessions"."violence_reason", "sessions"."latitude", "sessions"."longitude", "sessions"."updated_at" FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assaltos"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (0.26ms)
+Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:34:08 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `sempty?' for {}:Hash
+Did you mean?  empty?):
+  
+app/controllers/messenger_controller.rb:25:in `get_violence_by_type'
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:34:18 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assaltos"]]
+Completed 200 OK in 12ms (Views: 4.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:34:58 -0300
+  
+SyntaxError (/home/gleydson/projetos/bo_bot/bobot/app/controllers/messenger_controller.rb:25: syntax error, unexpected tLABEL, expecting keyword_do or '{' or '('
+    sessions.empty? ? render json: "[]" : render json: sessions
+                                  ^
+/home/gleydson/projetos/bo_bot/bobot/app/controllers/messenger_controller.rb:25: syntax error, unexpected ':', expecting keyword_end
+    sessions.empty? ? render json: "[]" : render json: sessions
+                                         ^):
+  
+app/controllers/messenger_controller.rb:25: syntax error, unexpected tLABEL, expecting keyword_do or '{' or '('
+app/controllers/messenger_controller.rb:25: syntax error, unexpected ':', expecting keyword_end
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:35:25 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assaltos"]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::JsonApi (0.22ms)
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/messenger/get_violence_by_type/assaltos" for 187.64.17.47 at 2017-07-22 16:35:31 -0300
+Processing by MessengerController#get_violence_by_type as */*
+  Parameters: {"violence_type"=>"assaltos", "messenger"=>{}}
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "sessions" WHERE "sessions"."violence_type" = $1[0m  [["violence_type", "assaltos"]]
+Completed 200 OK in 9ms (Views: 3.1ms | ActiveRecord: 0.5ms)
+
+
