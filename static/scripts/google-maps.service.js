@@ -169,10 +169,11 @@ function GoogleMapsService($http, $sessionStorage){
 				      };
 
 				      if (place.geometry.viewport) {
-
+                          $sessionStorage.location = place.geometry.location;
 				        bounds.union(place.geometry.viewport);
 				      } else {
 				        bounds.extend(place.geometry.location);
+                          $sessionStorage.location = place.geometry.location;
 				      }
 				    });
 				    map.fitBounds(bounds);
@@ -197,7 +198,7 @@ var clearmap = function clearMap() {
             markersmap[i].setMap(null);
         }
         markersmap=[];
-       // heatmap.setMap(null);
+       heatmap.setMap(null);
         markerCluster.clearMarkers();
 
 };

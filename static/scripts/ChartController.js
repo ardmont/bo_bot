@@ -5,11 +5,22 @@
         .module('bobotApp')
         .controller('ChartController', ChartController);
 
-    ChartController.$inject = ['$scope', 'DateUtils', 'Violence','$http', '$uibModal', '$sessionStorage', '$q', '_'];
+    ChartController.$inject = ['Violence','$q', '_'];
 
-    function ChartController ($scope,DateUtils,Violence, $http, $uibModal, $sessionStorage, $q, _) {
+    function ChartController (Violence, $q, _) {
         var vm = this;
         vm.violencias = Violence.query();
+        //Objeto que contem os dados do grafico pizza
+        vm.pie = {};
+        //Objeto que contem os dados do grafico de barras
+        vm.bar = {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            series: ['Series A'],
+            data:[]
+
+        };
+
+        //Compila os dados indos do webservice e agrupa para apresentar nos graficos
         $q.all([vm.violencias.$promise]).then(function () {
             var groupedByMonth = _.groupBy(vm.violencias, function(item) {
                 if(item.violence_date) {
@@ -34,14 +45,8 @@
             console.log(vm.bar.data);
         });
 
-        vm.bar = {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-            series: ['Series A'],
-            data:[]
 
-        };
 
-        vm.pie = {
-        };
+
 }
 })();
