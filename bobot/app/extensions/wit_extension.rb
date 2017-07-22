@@ -4,13 +4,8 @@ require 'koala'
 class WitExtension
 
   def initialize(sender_id, session_id)
-    puts "#####################################################3"
-    puts sender_id
-    puts session_id
     actions = {
-      send: -> (request, response) {
-        puts request
-        puts response        
+      send: -> (request, response) {       
         if response['quickreplies']
           if response['quickreplies'][0] == 'get_location'
             Messenger::Client.send(

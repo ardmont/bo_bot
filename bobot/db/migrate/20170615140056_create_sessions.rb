@@ -5,7 +5,7 @@ class CreateSessions < ActiveRecord::Migration[5.0]
       t.datetime :last_exchange
       t.text :context
       t.string :violence_type
-      t.datetime :violence_date
+      t.string :violence_date, default: "UTC"
       t.text :violence_description
       t.text :violence_reason
       t.string :latitude
