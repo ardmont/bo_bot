@@ -24,18 +24,31 @@
         function save () {
             if(vm.tipoList && vm.tipoList.length > 0){
                 vm.tipoList.forEach(function (filtro) {
-                    vm.vil.push(ViolenceTipo.query({id:filtro.value}).$promise);
+
+                        vm.vil.push(ViolenceTipo.query({id:filtro.value}).$promise);
+
+
+
                 });
                 $q.all(vm.vil).then(function (ob) {
                     if(ob.length > 0){
                       for(var i =0; i < vm.vil.length; i++){
                           for(var j =0; j < ob.length; j++){
-                              vm.results.push(ob[i][j]);
+                              if(ob[i].length > 0){
+                                  vm.results.push(ob[i][j]);
+                              }
 
                           }
                       }
-                        $rootScope.$broadcast("filtroSuccess", vm.results);
-                        $uibModalInstance.close(vm.results);
+                      if(vm.results.length > 0 && vm.results[0] != undefined){
+                          $rootScope.$broadcast("filtroSuccess", vm.results);
+                          $uibModalInstance.close(vm.results);
+                          vm.tipoList=[];
+                      }
+                      else{
+                          vm.alert = "Nenhum resultado para os filtros informados.";
+                      }
+
 
                     }
                 })

@@ -28,8 +28,9 @@
 
             }, function (error) {
                 console.log("Could not get location");
+                alert("Erro: Não foi possivel obter sua localização, parece que você não está conectado a internet.");
 
-                GoogleMapsService.init();
+                //GoogleMapsService.init();
             });
         }
         else{

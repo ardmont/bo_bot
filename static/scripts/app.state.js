@@ -19,7 +19,7 @@
             }
         }).state('home', {
             parent:'app',
-            url: '/home',
+            url: '/',
             views: {
                 'content@': {
                     templateUrl: 'home.html',

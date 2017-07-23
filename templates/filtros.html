@@ -6,6 +6,9 @@
           </div>
           <div class="modal-body">
 
+              <div class="alert alert-info col-md-12" ng-show="vm.alert">
+              <alert  close="true" type="info">{{vm.alert}}</alert>
+              </div>
             <div class="form-group">
               <label>Tipos de Violência</label>
               <div class="checkbox" ng-repeat="tp in vm.tiposOcorrencias">
