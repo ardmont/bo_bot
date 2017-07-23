@@ -30,7 +30,8 @@ ENV['FACEBOOK_PAGE_TOKEN'] = 'TOKEN DA PÁGINA DO FACEBOOK'
 
 ## Métodos
 * https://hackfestbobot.herokuapp.com/messenger/webhook - webhook utilizado na integração com o facebook
-* https://hackfestbobot.herokuapp.com/messenger/get_violence - retorna todas as violências 
+* https://hackfestbobot.herokuapp.com/messenger/get_violence - retorna todas as violências
+* https://hackfestbobot.herokuapp.com/messenger/get_violence_by_type/assalto - retorna todas as violências por tipo como parâmetro
 
 
 ## Licença

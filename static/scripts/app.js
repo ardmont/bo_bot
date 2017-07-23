@@ -13,5 +13,4 @@ angular.module("bobotApp"
     , 'chart.js'
     ]).run(function($rootScope) {
   $rootScope.$on("$stateChangeError", console.log.bind(console));
-});; 
-
+});
