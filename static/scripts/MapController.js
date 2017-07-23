@@ -28,16 +28,29 @@
 
             }, function (error) {
                 console.log("Could not get location");
+                alert("Erro: Não foi possivel obter sua localização, parece que você não está conectado a internet.");
 
-                GoogleMapsService.init();
+                //GoogleMapsService.init();
             });
         }
         else{
+            if(map) {
+                GoogleMapsService.clear();
+            }
             GoogleMapsService.init($sessionStorage.location);
             Violence.query(function (result) {
                 console.log(result);
                 GoogleMapsService.addMarker(result);
             });
         }
+
+        $scope.$on('filtroSuccess', function (event, result){
+            console.log(result);
+            if(map) {
+                GoogleMapsService.clear();
+            }
+           // GoogleMapsService.init($sessionStorage.location);
+            GoogleMapsService.addMarker(result);
+        } )
 }
 })();

@@ -11,6 +11,7 @@ angular.module("bobotApp"
     ,'ngResource'
     , 'ngStorage'
     , 'chart.js'
+    ,'underscore'
     ]).run(function($rootScope) {
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
