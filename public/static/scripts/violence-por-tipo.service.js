@@ -7,7 +7,7 @@
     ViolenceTipo.$inject = ['$resource'];
 
     function ViolenceTipo ($resource) {
-        var resourceUrl =  'https://hackfestbobot.herokuapp.com/messenger/get_violence_by_type/:id';
+        var resourceUrl =  'https://hackfestbot.herokuapp.com/messenger/get_violence_by_type/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
