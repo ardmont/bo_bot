@@ -31,7 +31,7 @@
                 alert("Erro: Não foi possivel obter sua localização, parece que você não está conectado a internet.");
 
                 //GoogleMapsService.init();
-            });
+            }, {timeout:10000});
         }
         else{
             if(map) {
