@@ -35,7 +35,7 @@
             vm.pie.data = _.map(groupdByTipo, function (value, key) {
                 return value;
             });
-            console.log(vm.pie.labels);
+            // console.log(vm.pie.labels);
             var dataMes = [];
             delete groupedByMonth[undefined];
             for(var i = 0; i < 12; i++){
@@ -43,7 +43,7 @@
                 dataMes[i] = (groupedByMonth[i+1] ? groupedByMonth[i+1].length : 0);
             }
             vm.bar.data.push(dataMes);
-            console.log(vm.bar.data);
+            // console.log(vm.bar.data);
         });
 
         function compilaDadosFiltros(dados) {
@@ -61,7 +61,7 @@
             vm.pie.data = _.map(groupdByTipo, function (value, key) {
                 return value;
             });
-            console.log(vm.pie.labels);
+            // console.log(vm.pie.labels);
             var dataMes = [];
             delete groupedByMonth[undefined];
             for(var i = 0; i < 12; i++){
@@ -69,7 +69,7 @@
                 dataMes[i] = (groupedByMonth[i+1] ? groupedByMonth[i+1].length : 0);
             }
             vm.bar.data.push(dataMes);
-            console.log(vm.bar.data);
+            // console.log(vm.bar.data);
         }
 
         $scope.$on('filtroSuccess', function (event, result) {
