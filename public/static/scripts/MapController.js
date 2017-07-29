@@ -22,7 +22,7 @@
                 $sessionStorage.location = latlng;
                 GoogleMapsService.init(latlng);
                 Violence.query(function (result) {
-                    // console.log(result);
+                    console.log(result);
                     GoogleMapsService.addMarker(result);
                 });
 

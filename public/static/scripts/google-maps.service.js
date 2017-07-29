@@ -207,15 +207,37 @@ var clearmap = function clearMap() {
 
         var records = data;
 
+        var iconBase = '../Img/';
+        var icons = {
+          assalto: {
+            icon: iconBase + 'assalto.png'
+          },
+          assedio: {
+            icon: iconBase + 'vio_sex.png'
+          },
+          homicidio: {
+            icon: iconBase + 'homicidio.png'
+          },
+          roubo: {
+            icon: iconBase + 'roubo.png'
+          },
+          vandalismo: {
+            icon: iconBase + 'vandalismo.png'
+          }
+        };
+
+        console.log(icons);
+
         for (var i = 0; i < records.length; i++) {
 
           var record = records[i];
           var markerPosition = new google.maps.LatLng(record.latitude, record.longitude);
           //Array de posiçoes
-             heatmapData.push(markerPosition);
+          heatmapData.push(markerPosition);
 
           // Adiciona um marcador no mapa
           var marker = new google.maps.Marker({
+              icon: icons[record.violence_type].icon,
               map: map,
               animation: google.maps.Animation.DROP,
               position: markerPosition
