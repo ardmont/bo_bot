@@ -15,6 +15,12 @@ class WitExtension
         else
           Messenger::Client.send(
             Messenger::Request.new(
+                Messenger::Elements::SenderAction.new(sender_action: 'typing_on'),
+                sender_id
+              ) 
+          )
+          Messenger::Client.send(
+            Messenger::Request.new(
               Messenger::Elements::Text.new(text: response['text']),
               sender_id
             )
