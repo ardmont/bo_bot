@@ -9,9 +9,9 @@
 
     function FiltrosController ($timeout, $scope, $uibModalInstance, $filter, ViolenceTipo, $rootScope, $q) {
         var vm = this;
-        	vm.tiposOcorrencias = [{tipo:"Assalto", value:"assalto"}, {tipo:"Roubo", value:"roubo"}, {tipo:"Violência Sexual", value:"vio_sexual"}
-            , {tipo:"Vandalismo", value:"vandalismo"}, {tipo:"Homicídio", value:"homicidio"}];
-
+        	vm.tiposOcorrencias = [{tipo:"Assalto", value:"assalto"}, {tipo:"Roubo", value:"roubo"}, {tipo:"Violência Sexual", value:"abuso_sexual"}
+            , {tipo:"Vandalismo", value:"vandalismo"}, {tipo:"Homicídio", value:"homicidio"}, {tipo:"Racismo/Gênero", value:"racismo_genero"}, {tipo:"Volência escolar", value:"violencia_escolar"}
+            , {tipo:"Tráfico de drogas", value:"trafico_de_drogas"}, {tipo:"Violência policial", value:"violencia_policial"}, {tipo:"Violência contra a mulher", value:"violencia_mulher"}];
 
         vm.clear = clear;
         vm.save = save;
