@@ -1,6 +1,6 @@
 ## B.O ChatBot
 
-![bobot](https://hackfestbot.herokuapp.com/Img/banner.jpg)
+![bobot](https://hackfestbobot.herokuapp.com/Img/banner.jpg)
 
 B.O. bot é um ChatBot/Robô criado durante o hackfest 2017 para colher informações sobre casos de violências e dispor esses dados para diversos órgãos de segurança. Esses dados podem ser vistos no site do B.O Bot na forma de um mapa da violência.
 

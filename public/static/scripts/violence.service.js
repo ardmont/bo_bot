@@ -7,7 +7,7 @@
     Violence.$inject = ['$resource'];
 
     function Violence ($resource) {
-        var resourceUrl =  'https://hackfestbot.herokuapp.com/messenger/get_violence/:id';
+        var resourceUrl =  'https://hackfestbobot.herokuapp.com/messenger/get_violence/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
