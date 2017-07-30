@@ -11,7 +11,7 @@ https://www.facebook.com/hackfestbobot/
 ```
 git clone git@github.com:g13ydson/bo_bot.git
 ```
-* dentro da pasta */bobot* Instalar as dependências e criar o banco de dados
+* dentro da pasta */bo_bot* Instalar as dependências e criar o banco de dados
 ```
 bundle install
 rake db:create db:migrate
