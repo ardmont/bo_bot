@@ -52,5 +52,15 @@
            // GoogleMapsService.init($sessionStorage.location);
             GoogleMapsService.addMarker(result);
         } )
+         $scope.$on('clearFilters', function (event, result){
+            if(map) {
+                GoogleMapsService.clear();
+            }
+            GoogleMapsService.init($sessionStorage.location);
+            Violence.query(function (result) {
+                // console.log(result);
+                GoogleMapsService.addMarker(result);
+            });
+        } )
 }
 })();

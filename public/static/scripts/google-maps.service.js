@@ -253,6 +253,7 @@ var clearmap = function clearMap() {
                             imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
                         });
 
+        /* Desabilitado o mapa de calor
           google.maps.event.addListener(map, 'zoom_changed', function () {
                      heatmap.setOptions({radius:getNewRadius()});
         });
@@ -263,7 +264,7 @@ var clearmap = function clearMap() {
 							dissipating: true,
 							radius: getNewRadius()
 
-		});
+		});*/
 
 
 

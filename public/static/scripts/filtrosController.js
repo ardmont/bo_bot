@@ -17,6 +17,8 @@
         vm.save = save;
       
         function clear () {
+            vm.tipoList=[];
+            $rootScope.$broadcast("clearFilters");
             $uibModalInstance.dismiss('cancel');
         }
         vm.results = [];
