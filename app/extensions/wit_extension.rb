@@ -15,6 +15,12 @@ class WitExtension
         else
           Messenger::Client.send(
             Messenger::Request.new(
+                Messenger::Elements::SenderAction.new(sender_action: 'typing_on'),
+                sender_id
+              ) 
+          )
+          Messenger::Client.send(
+            Messenger::Request.new(
               Messenger::Elements::Text.new(text: response['text']),
               sender_id
             )
@@ -96,7 +102,6 @@ class WitExtension
         session = Session.find(session_id)
         
         characteristics = get_characteristics(entities)
-
         if characteristics
           context['description'] = characteristics
           context.delete("missingDescription")
@@ -116,9 +121,9 @@ class WitExtension
         reason = request["text"]
 
         if reason
-          context['reason'] = reason
-          context.delete("missingReason")
+          context['reason'] = true
           new_context = {}
+          context.delete("missingReason")
         else
           context['missingReason'] = true
           new_context = context
@@ -126,7 +131,12 @@ class WitExtension
 
         session.update(context: new_context, violence_reason: reason)
 
-        return new_context
+        return context
+      },
+      resetContext: -> (request){
+        session = Session.find(session_id)
+        session.update(context: {})
+        return {}
       }
     }
     @client ||= Wit.new(access_token: ENV['WIT_TOKEN'],actions: actions)

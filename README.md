@@ -1,11 +1,8 @@
 ## B.O ChatBot
 
-É um ChatBot/Robô para Facebook que servirá para colher informaçes sobre alguns tipos de violência e com isso gerar
-um mapa da violência de diversos lugares.
+![bobot](https://hackfestbobot.herokuapp.com/Img/banner.jpg)
 
-Com o B.O Bot o usuário não precisará acessar um site ou baixar um aplicativo para poder informar a violência. 
-O B.O Bot torna o acesso mais simples e natural já que basta conversar com o Bot no aplicativo do Facebook como se estivesse
-conversando com um humano.
+B.O. bot é um ChatBot/Robô criado durante o hackfest 2017 para colher informações sobre casos de violências e dispor esses dados para diversos órgãos de segurança. Esses dados podem ser vistos no site do B.O Bot na forma de um mapa da violência.
 
 https://www.facebook.com/hackfestbobot/
 
@@ -16,7 +13,7 @@ https://www.facebook.com/hackfestbobot/
 ```
 git clone git@github.com:g13ydson/bo_bot.git
 ```
-* dentro da pasta */bobot* Instalar as dependências e criar o banco de dados
+* dentro da pasta */bo_bot* Instalar as dependências e criar o banco de dados
 ```
 bundle install
 rake db:create db:migrate

@@ -16,7 +16,7 @@ class MessengerController < Messenger::MessengerController
   end
 
   def get_violence
-    sessions = Session.all.select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
+    sessions = Session.where.not(violence_type: nil).select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
     if sessions.empty?
       render json: "[]"
     else

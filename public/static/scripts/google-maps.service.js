@@ -207,15 +207,37 @@ var clearmap = function clearMap() {
 
         var records = data;
 
+        var iconBase = '../Img/';
+        var icons = {
+          assalto: {
+            icon: iconBase + 'assalto.png'
+          },
+          abuso_sexual: {
+            icon: iconBase + 'abuso_sexual.png'
+          },
+          homicidio: {
+            icon: iconBase + 'homicidio.png'
+          },
+          roubo: {
+            icon: iconBase + 'roubo.png'
+          },
+          vandalismo: {
+            icon: iconBase + 'vandalismo.png'
+          }
+        };
+
+        console.log(icons);
+
         for (var i = 0; i < records.length; i++) {
 
           var record = records[i];
           var markerPosition = new google.maps.LatLng(record.latitude, record.longitude);
           //Array de posiçoes
-             heatmapData.push(markerPosition);
+          heatmapData.push(markerPosition);
 
           // Adiciona um marcador no mapa
           var marker = new google.maps.Marker({
+              // icon: icons[record.violence_type].icon,
               map: map,
               animation: google.maps.Animation.DROP,
               position: markerPosition
@@ -249,18 +271,22 @@ var clearmap = function clearMap() {
   }
 
   function addInfoWindow(marker, record) {
-       var message ='<div id="iw-container">' +
-           '<div class="iw-title">'+record.violence_type+'</div>' +
-           '<div class="iw-content">' +
-           '<div class="iw-subTitle">'+record.violence_reason+'</div>' +
-           '<p>'+record.violence_description +"."+'</p>' +
-           '<div class="iw-subTitle">Pode ser informado contatos de denuncia aqui</div>' +
-           '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
-           '<br>Tel. +351 234 320 600<br>email: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
-           '</div>' +
+      if(record.violence_type !== null){
+        var txt = record.violence_description.toString();
+        var rgx = /"value"=>"(.*?)"}]/g
+        var tags = [];
+        var tag;
+        while ((tag = rgx.exec(txt)) != null) {
+          tags.push(tag[1]);
+        }
+        var message ='<div id="iw-container">' +
+           '<div class="iw-title"> VIOLÊNCIA: '+record.violence_type.toUpperCase()+'</div>' +
+           '<div class="iw-content"><b> Causa segundo o denunciante:</b> '+ '"'+ record.violence_reason.italics() + '"' +'</div>' +
+           '<div class="iw-content"><b> Tags da denúncia:</b> '+ tags +'</div>' +
            '<div class="iw-bottom-gradient"></div>' +
            '</div>';
-
+      }
+       
       var infoWindow = new google.maps.InfoWindow({
           content: message
 
@@ -343,7 +369,7 @@ var clearmap = function clearMap() {
 				endCoord.y * numTiles);
 				var pixelsPerMeter = (Math.abs(initPoint.x - endPoint.x)) / 10000.0;
 				var totalPixelSize = Math.floor(desiredRadiusPerPointInMeters * pixelsPerMeter);
-				console.log(totalPixelSize);
+				// console.log(totalPixelSize);
 				return totalPixelSize;
 
 }
