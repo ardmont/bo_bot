@@ -226,7 +226,6 @@ var clearmap = function clearMap() {
           }
         };
 
-        console.log(icons);
 
         for (var i = 0; i < records.length; i++) {
 

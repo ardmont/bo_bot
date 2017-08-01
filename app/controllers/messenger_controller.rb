@@ -16,7 +16,7 @@ class MessengerController < Messenger::MessengerController
   end
 
   def get_violence
-    sessions = Session.where.not(violence_type: nil).select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
+    sessions = Session.where.not(violence_type: nil, violence_reason: nil, latitude: nil, longitude: nil ).select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
     if sessions.empty?
       render json: "[]"
     else
@@ -25,7 +25,7 @@ class MessengerController < Messenger::MessengerController
   end
 
   def get_violence_by_type
-    sessions = Session.where(violence_type: params[:violence_type]).select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
+    sessions = Session.where(violence_type: params[:violence_type]).where.not(violence_type: nil, violence_reason: nil, latitude: nil, longitude: nil).select(:violence_type, :violence_date, :violence_description, :violence_reason, :latitude, :longitude, :updated_at)
     if sessions.empty?
       render json: "[]"
     else
