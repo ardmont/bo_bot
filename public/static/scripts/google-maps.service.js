@@ -258,11 +258,12 @@ var clearmap = function clearMap() {
         });
 
          heatmap = new google.maps.visualization.HeatmapLayer({
-							data: heatmapData,
-							map: map,
-							dissipating: true,
-							radius: getNewRadius()
-
+							  data: heatmapData,
+  		          map: map,
+                dissipating: true,
+                maxIntensity: 2,
+                opacity: 0.8,
+  		          radius: getNewRadius()
 		});
 
 
