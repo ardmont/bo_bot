@@ -2,11 +2,13 @@
 
 ![bobot](https://hackfestbobot.herokuapp.com/Img/banner.jpg)
 
-B.O. bot é um ChatBot/Robô criado durante o hackfest 2017 para colher informações sobre casos de violências e dispor esses dados para diversos órgãos de segurança. Esses dados podem ser vistos no site do B.O Bot na forma de um mapa da violência.
+B.O. bot é um ChatBot/Robô criado durante o hackfest 2017 capaz de receber denúncias  sobre casos de violências. Com essas informações criamos um mapa da violência que pode ser visto no site https://www.bobot.com.br e dispomos esses dados através de um webservice. Os dados são abertos e podem ser utilizados por qualquer pessoa.
 
 https://www.facebook.com/hackfestbobot/
 
 ## Instalação
+* Criar uma conta no WIT.AI
+* Criar uma aplicação no Facebook https://developers.facebook.com/apps
 * Baixar e importar o projeto no WIT.AI [Download](https://api.wit.ai/export/AbnsKj0LhNoF5Fgb63VOHIIPOfqhfeSPS7B8omeXQEHRkWQaSZgBaypeDccc8J6bJ3zAQLghUXhKa5MsTUQRoJB7g60uVwnX3PfGbt9kFBqIaw)
 * Instalar o ambiente Ruby on Rails [RoR](https://gorails.com/setup/ubuntu/16.04)
 * Clonar o repositório 
