@@ -236,7 +236,8 @@ var clearmap = function clearMap() {
 
           // Adiciona um marcador no mapa
           var marker = new google.maps.Marker({
-              // icon: icons[record.violence_type].icon,
+              optimized:false,
+              icon: '../Img/sirene.gif',
               map: map,
               animation: google.maps.Animation.DROP,
               position: markerPosition
@@ -262,7 +263,7 @@ var clearmap = function clearMap() {
   		          map: map,
                 dissipating: true,
                 maxIntensity: 2,
-                opacity: 0.8,
+                opacity: 0.3,
   		          radius: getNewRadius()
 		});
 
