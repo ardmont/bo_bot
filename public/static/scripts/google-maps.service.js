@@ -262,7 +262,7 @@ var clearmap = function clearMap() {
   		          map: map,
                 dissipating: true,
                 maxIntensity: 2,
-                opacity: 0.8,
+                opacity: 0.4,
   		          radius: getNewRadius()
 		});
 
