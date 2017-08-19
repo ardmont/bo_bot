@@ -32,6 +32,8 @@ ENV['FACEBOOK_PAGE_TOKEN'] = 'TOKEN DA PÁGINA DO FACEBOOK'
 * https://www.bobot.com.br/messenger/get_violence - retorna todas as violências
 * https://www.bobot.com.br/messenger/get_violence_by_type/assalto - retorna todas as violências por tipo como parâmetro
 
+## Contato
+* tavares.gleydson@gmail.com
 
 ## Licença
 
