@@ -276,7 +276,6 @@ var clearmap = function clearMap() {
 
       if(record.violence_type !== null){
         var txt = record.violence_description.toString();
-        console.log(txt);
         var rgx = /"value"=>"(.*?)"/g
         var tags = [];
         var tag;
